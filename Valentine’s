@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Love Story</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #ff7e5f, #feb47b);
+      color: white;
+      overflow: hidden;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+    .container {
+      position: relative;
+    }
+    .message, .memory, #finalMessage {
+      display: none;
+      animation: fadeIn 2s forwards;
+    }
+    .message h1, .memory h2 {
+      font-size: 2rem;
+      margin: 20px 0;
+    }
+    .message button {
+      padding: 10px 20px;
+      font-size: 1rem;
+      background-color: #ff7e5f;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .message button:hover {
+      transform: scale(1.1);
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .rose-petals, .fireworks {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      pointer-events: none;
+    }
+    .rose-petals {
+      background: url('https://www.transparenttextures.com/patterns/rose-petals.png') repeat;
+      animation: float 5s ease-in-out infinite;
+    }
+    @keyframes float {
+      0% { top: 0; opacity: 1; }
+      50% { top: -20px; opacity: 0.5; }
+      100% { top: 0; opacity: 1; }
+    }
+    .fireworks h1 {
+      font-size: 3rem;
+      color: #ffcc00;
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+      animation: explode 2s forwards;
+    }
+    @keyframes explode {
+      0% { transform: scale(1); opacity: 0; }
+      100% { transform: scale(3); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="message" id="message">
+      <h1>Every love story is special… but ours is my favorite.</h1>
+      <button onclick="showMemories()">Start</button>
+    </div>
+    <div class="memory" id="memory1">
+      <h2>The day I saw you in that blue kurtha… I couldn’t resist coming back to see you again.</h2>
+    </div>
+    <div class="memory" id="memory2">
+      <h2>The day we almost let each other go because of family… You said, "Afno khyaal rakha la," and I cried even more.</h2>
+    </div>
+    <div class="memory" id="memory3">
+      <h2>The day you made me heart-shaped noodles and fed me with your hands… We hugged and didn’t want to let go.</h2>
+    </div>
+    <div class="memory" id="memory4">
+      <h2>The day we held hands in the rain as I left for Nepal… I wished that moment could last forever.</h2>
+    </div>
+    <div class="memory" id="finalMessage">
+      <h1>No matter what happens, you’ll always be my forever. Happy Valentine’s Day, my love.</h1>
+    </div>
+    <div class="rose-petals"></div>
+    <div class="fireworks"></div>
+  </div>
+
+  <audio id="bg-music" loop>
+    <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mp3">
+  </audio>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      document.getElementById("message").style.display = "block";
+      document.getElementById("bg-music").play();
+    });
+
+    let currentMemory = 1;
+    function showMemories() {
+      if (currentMemory <= 4) {
+        document.getElementById(`memory${currentMemory}`).style.display = "block";
+        currentMemory++;
+        setTimeout(showMemories, 6000);
+      } else {
+        document.getElementById("finalMessage").style.display = "block";
+        triggerFireworks();
+      }
+    }
+
+    function triggerFireworks() {
+      const fireworks = document.querySelector(".fireworks");
+      fireworks.innerHTML = '<h1>🎆 Fireworks 🎆</h1>';  
+    }
+  </script>
+</body>
+</html>
